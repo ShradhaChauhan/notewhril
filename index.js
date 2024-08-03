@@ -7,7 +7,9 @@ const path = require('path');
 
 connectToMongo();
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://notewhril.onrender.com']
+}));
 
 app.use(express.json());
 
