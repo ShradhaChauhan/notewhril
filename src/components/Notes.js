@@ -3,7 +3,7 @@ import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
 import AddNote from "./AddNote";
 import { useNavigate } from "react-router-dom";
-
+import './styles.css'
 const Notes = (props) => {
   let navigate = useNavigate();
   const context = useContext(noteContext);
@@ -13,9 +13,10 @@ const Notes = (props) => {
     console.log("Auth Token- " + localStorage.getItem('token'));
     if(localStorage.getItem('token')){
       fetchAllNotes();
+        document.title = 'Create your Notes on NoteWhril';
     }
     else{
-      navigate("/Login");
+      navigate("/About");
     }
     //eslint-disable-next-line
   }, []);
@@ -133,14 +134,14 @@ const Notes = (props) => {
               <button
                 ref={refClose}
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-outline-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn purpleBtn"
                 onClick={handleOnUpdateNote}
               >
                 Update Note
@@ -149,12 +150,12 @@ const Notes = (props) => {
           </div>
         </div>
       </div>
-      <div className="row my-3">
-        <h2>Your Notes</h2>
-        <br />
-        <div className='container mx-2'>
-          {notes.length === 0 && "No notes to display"}
-        </div>
+      <div className="row d-flex sidebarBg minHeight-100vh height-auto mt-0 pb-5">
+        <h2 className="text-center mt-5 mb-5">Your Notes</h2>
+        {notes.length === 0 && <p className='container d-flex justify-content-center negativeTop-180'>
+           {/* {notes.length === 0 && "No notes to display"} */}
+           No notes to display
+        </p>}
         {notes.map((note) => {
           return (
             <Noteitem note={note} updateNote={updateNote} key={note._id} showAlert={props.showAlert} />

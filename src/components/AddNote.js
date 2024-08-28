@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import noteContext from "../context/notes/noteContext";
+import './styles.css'
 
 const AddNote = (props) => {
   const context = useContext(noteContext);
@@ -29,8 +30,8 @@ const AddNote = (props) => {
   };
 
   return (
-    <div className="container my-3">
-      <h2 className="position-absolute start-50 translate-middle mt-3">
+    <div className="col-8 float-end container h-100vh mt-3 p-5">
+      <h2 className="position-absolute start-50 translate-middle">
         Add a Note
       </h2>
       <br />
@@ -62,6 +63,7 @@ const AddNote = (props) => {
             name="description"
             onChange={onChange}
             minLength={5}
+            rows={9}
             required
             value={note.description}
           ></textarea>
@@ -82,7 +84,7 @@ const AddNote = (props) => {
         </div>
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn purpleBtn"
           onClick={handleOnAddNote}
         >
           Add Note
